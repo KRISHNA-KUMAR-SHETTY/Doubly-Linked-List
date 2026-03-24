@@ -78,6 +78,47 @@ class DLL:
             print(temp.val,end=' ')
             temp=temp.prev
         print()
+
+    def delete_at_beg(self):
+        if self.head is None:
+            return "List is empty"
+        self.head= self.head.next
+        self.head.prev=None
+
+    def delete_at_mid(self,index):
+        if self.head is None:
+            return "List is empty"
+        if index==0:
+            self.delete_at_beg()
+            return
+        i=0
+        temp=self.head
+        while i<index and temp.next is not None:
+            temp=temp.next
+            i+=1
+
+        if temp.next is not None:
+            temp.next=temp.next.next
+            temp.next.prev= temp
+            return
+        raise IndexError("index out of range")
+    
+    def delete_at_end(self):
+        if self.head is None:
+            return "List is empty"
+        temp = self.head
+        while temp.next is not None:
+            temp=temp.next
+        temp.prev.next=None
+    
+
+        
+
+
+
+            
+
+
  
 
 
@@ -91,8 +132,12 @@ n1.insert_at_mid(30,1)
 n1.insert_at_mid(50,6)
 n1.insert_at_end(60)
 n1.insert_at_beg(10)
+n1.delete_at_beg()
+n1.delete_at_mid(3)
+n1.delete_at_end()
 n1.traverse()
 n1.reverse_traverse()
+
 
 
 
